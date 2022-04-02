@@ -2,6 +2,8 @@
 
 ## MCMC
 
+- PyMC [installation](https://github.com/pymc-devs/pymc/issues/4937)
+
 ### Examples
 
 - [Fitting a Model to Data](http://dfm.io/emcee/current/user/line/#) (emcee)
