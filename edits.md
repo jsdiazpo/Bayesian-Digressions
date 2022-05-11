@@ -30,3 +30,27 @@ d4 = np.array([0,1,2,3,4])
 p4 = d1*d2*d3*d4/sum(d1*d2*d3*d4)
 print(p4)
 ```
+
+
+```python
+fig, axs = plt.subplots(figsize=(20, 5), ncols=5)
+xmin, xmax = -0.5, 4.5
+ymin, ymax = 0, 0.5
+x_axis = ['A', 'B', 'C', 'D', 'E']
+ps = [p0, p1, p2, p3, p4]
+for i, ax in enumerate(axs.flat):
+    if i == 0:
+        ax.bar(x_axis, ps[i], color='y', ec='w')
+    else:
+        ax.bar(x_axis, ps[i-1], ls='--', ec= 'lime', fc='None', label='previous', zorder=10)
+        ax.bar(x_axis, ps[i], color='y', ec='y', label='updated')
+        ax.legend(loc='upper left')
+    ax.set(#xlabel='pen distribution', 
+           ylabel='probability mass function', #title='', 
+           xlim=[xmin,xmax], ylim=[ymin,ymax])
+    ax.grid(lw=1, alpha=0.2, zorder=0)
+    
+plt.tight_layout()
+# fig.savefig('../plots/pen-draw-distributions-0-3.pdf', bbox_inches='tight')
+# fig.savefig('../plots/pen-draw-distributions-0-4.pdf', bbox_inches='tight')
+```
