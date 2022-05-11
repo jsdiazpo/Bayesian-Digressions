@@ -54,3 +54,20 @@ plt.tight_layout()
 # fig.savefig('../plots/pen-draw-distributions-0-3.pdf', bbox_inches='tight')
 # fig.savefig('../plots/pen-draw-distributions-0-4.pdf', bbox_inches='tight')
 ```
+
+
+
+
+```python
+def likelihood(W, L, p):
+    return np.math.factorial(W+L) / (np.math.factorial(W) * np.math.factorial(L)) * p**W * (1-p)**L
+
+def likelihood_water(W, N, p):
+    return np.math.factorial(N) / (np.math.factorial(W) * np.math.factorial(N-W)) * p**W * (1-p)**(N-W)
+
+def posterior_water(W, N, p, prior):
+    post_propto = prior * likelihood_water(W=W, N=N, p=p)
+    normalization = prior * np.math.factorial(N) / (np.math.factorial(W) * np.math.factorial(N-W)) * beta_function(W+1, N-W+1)
+    posterior = post_propto / normalization
+    return posterior
+```
