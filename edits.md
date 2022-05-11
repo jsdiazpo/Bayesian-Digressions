@@ -103,3 +103,16 @@ for idx, ax in enumerate(axs.flat):
 plt.tight_layout()
 # fig.savefig('../plots/Globe-Forking-Water-flat-prior.pdf', bbox_inches='tight')
 ```
+
+
+```python
+p_axis[np.argwhere(last_posterior == np.percentile(last_posterior,50,method='nearest'))[0,0]]
+# p_axis[np.argwhere(last_posterior == np.mean(last_posterior))]
+
+for x,y in zip(p_axis, last_posterior):
+    # value = np.percentile(last_posterior,50)
+    value = np.mean(last_posterior)
+    if y >= value:
+        print(x,y)
+        break
+```
