@@ -71,3 +71,35 @@ def posterior_water(W, N, p, prior):
     posterior = post_propto / normalization
     return posterior
 ```
+
+
+
+```python
+n_samples = 10000
+# p = np.random.random(n_samples)
+p_axis = np.linspace(0, 1, n_samples)
+prob_prior= np.repeat(1, n_samples)
+
+fig, axs = plt.subplots(figsize=(15, 8), ncols=4, nrows=3)
+plt.suptitle('Globe of Forking Water', fontsize=18)
+seq = ['L', 'W', 'W', 'L', 'W', 'W', 'W', 'L', 'W', 'W', 'W']
+xmin, xmax = 0, 1
+ymin, ymax = 0, 3.5
+cnt_all, cnt_water = 0, 0
+sequence = ''
+for idx, ax in enumerate(axs.flat):
+    if idx != 0:
+        sample = seq[idx-1]
+        if sample == 'W':
+            cnt_water += 1
+        cnt_all += 1
+        sequence += sample
+        ax.plot(p_axis, last_posterior, c='lime', ls='--', lw=2, alpha=0.6)
+    last_posterior = posterior_water(W=cnt_water, N=cnt_all, p=p_axis, prior=prob_prior)
+    ax.plot(p_axis, last_posterior, c='y', lw=4, alpha=1)
+    ax.set(xlabel='water fraction', ylabel='posterior', title=f'{sequence}', 
+           xlim=[xmin,xmax], ylim=[ymin,ymax])
+    ax.grid(lw=1, alpha=0.2, zorder=0)
+plt.tight_layout()
+# fig.savefig('../plots/Globe-Forking-Water-flat-prior.pdf', bbox_inches='tight')
+```
