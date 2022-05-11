@@ -116,3 +116,34 @@ for x,y in zip(p_axis, last_posterior):
         print(x,y)
         break
 ```
+
+```python
+def gaussian(mu, sigma, x):
+    return np.exp(-(x-mu)**2/(2*sigma**2))
+    
+prob_prior_gaussian = gaussian(mu=0.5, sigma=0.2, x=p_axis)
+
+fig, axs = plt.subplots(figsize=(15, 8), ncols=4, nrows=3)
+plt.suptitle('Globe of Forking Water', fontsize=18)
+seq = ['L', 'W', 'W', 'L', 'W', 'W', 'W', 'L', 'W', 'W', 'W']
+xmin, xmax = 0, 1
+ymin, ymax = 0, 3.5
+cnt_all, cnt_water = 0, 0
+sequence = ''
+for idx, ax in enumerate(axs.flat):
+    if idx != 0:
+        sample = seq[idx-1]
+        if sample == 'W':
+            cnt_water += 1
+        cnt_all += 1
+        sequence += sample
+        ax.plot(p_axis, last_posterior, c='lime', ls='--', lw=2, alpha=0.6)
+    last_posterior = posterior_water(W=cnt_water, N=cnt_all, p=p_axis, prior=prob_prior_gaussian)
+    # ax.plot(p_axis, prob_prior_gaussian, c='magenta', lw=4, alpha=0.96)
+    ax.plot(p_axis, last_posterior, c='y', lw=4, alpha=0.96)
+    ax.set(xlabel='water fraction', ylabel='posterior', title=f'{sequence}', 
+           xlim=[xmin,xmax], ylim=[ymin,ymax])
+    ax.grid(lw=1, alpha=0.2, zorder=0)
+plt.tight_layout()
+# fig.savefig('../plots/Globe-Forking-Water-gaussian-prior.pdf', bbox_inches='tight')
+```
