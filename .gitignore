@@ -4,11 +4,12 @@ __pycache__/
 # Jupyter Notebook
 .ipynb_checkpoints
 
-# my_files
+# files
 
-# my folders
-papers/
+# folders
+archive/
 data/
+papers/
 plots/
 
 
