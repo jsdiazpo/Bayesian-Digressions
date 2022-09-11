@@ -29,7 +29,7 @@
   - reinstall Numpy and Xarray:
     - `pip install --upgrade numpy==1.20.3`
     - `pip install xarray==0.20.2`
-  - see [Post Installation Checks - Do Not Skip This Step on Windows](https://github.com/pymc-devs/pymc/issues/4937)
+  - see [Post Installation Checks - Do Not Skip This Step on Windows](https://github.com/pymc-devs/pymc/issues/4937) (or [saved as PDF](https://github.com/jsdiazpo/Bayesian-Digressions/blob/master/PyMC3%20installation%20post%20checks.pdf))
   
 ### Examples
 
